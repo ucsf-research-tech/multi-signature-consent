@@ -43,12 +43,17 @@
 
 	"project-settings": [
         {
-            "key": "destination-file-field",
-            "name": "<b>File Field</b><br>This is where the PDF will be saved in the record and it must be a file-upload field",
-            "required": true,
-            "type": "field-list",
+            "key": "compilation-passes",
+            "name": "Compilation Passes",
+            "type": "sub_settings",
             "repeatable": true,
             "sub_settings": [
+                {
+                    "key": "destination-file-field",
+                    "name": "<b>File Field</b><br>This is where the PDF will be saved in the record and it must be a file-upload field",
+                    "required": true,
+                    "type": "field-list"
+                },
                 {
                     "key": "instance",
                     "name": "<b>Instruments to Merge</b>",
