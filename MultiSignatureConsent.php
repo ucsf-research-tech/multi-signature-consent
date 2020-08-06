@@ -13,7 +13,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
     public $header;
     public $footer;
     public $saveToFileRepo;
-    public $saveToExternalServer;
+    public $saveToExternalStorage;
     public $saveToAsSurvey;
 
     private static $MAKING_PDF = false;
