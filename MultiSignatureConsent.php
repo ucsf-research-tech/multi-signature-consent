@@ -6,14 +6,14 @@ require_once "emLoggerTrait.php";
 class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 
     use emLoggerTrait;
-
+    //TODO: Instantiate as arrays rather than dims
     public $evalLogic;
     public $destinationFileField;
     public $inputForms = [];
     public $header;
     public $footer;
     public $saveToFileRepo;
-    public $saveToExternalServer;
+    public $saveToExternalStorage;
     public $saveToAsSurvey;
 
     private static $MAKING_PDF = false;
@@ -26,8 +26,9 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 		// Other code to run when object is instantiated
 	}
 
-
-	public function initialize() {
+    //TODO: Capture as arrays rather than dims
+    //TODO: Investigate capture of sub-sub-settings.
+    public function initialize() {
         $this->evalLogic            = $this->getProjectSetting('eval-logic');
         $this->destinationFileField = $this->getProjectSetting('destination-file-field');
         $this->header               = $this->getProjectSetting('header');
@@ -122,17 +123,20 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             global $Proj;
             $this->initialize();
 
+            //TODO: Create flattened list of all targetted input forms and replace check below with this list
             // Make sure we are in one of the input forms
             if (!in_array($instrument, $this->inputForms)) {
                 $this->emDebug("$instrument is not in " . implode(",", $this->inputForms) . " -- skipping");
                 return false;
             }
 
+            //TODO: Initiate loop structure here
             $this->emDebug("Saving $record on $instrument, event $event_id with logic $this->evalLogic");
             // $event_name = $Proj->longitudinal ? \REDCap::getEventNames(true,true,$event_id) : null;
-            $logic = \REDCap::evaluateLogic($this->evalLogic, $project_id, $record, $event_id);
+            $logic = \REDCap::evaluateLogic($this->evalLogic, $project_id, $record, $event_id); //TODO: Iterate along evalLogic array
 
-            if (empty($this->evalLogic) || $logic == false) {
+            //TODO: Iterate along evalLogic
+            if (empty($this->evalLogic) || $logic == false) { 
                 // Skip - nothing to do here
                 $this->emDebug("Skip");
                 return false;
@@ -144,12 +148,13 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             //$this->emDebug("Making PDF", self::$MAKING_PDF);
             self::$MAKING_PDF = true;
 
+            //TODO: Grab inputForms subarray (rather than parent array)
             // Always start with the 'first form' as the template
             $first_form = $this->inputForms[0];
             $last_form = $this->inputForms[count($this->inputForms) -1 ];
 
             $pdf        = \REDCap::getPDF($record, $first_form, $event_id, false, $repeat_instance,
-                true, $this->header, $this->footer);
+                true, $this->header, $this->footer); //TODO: header and footer to array grabs
 
             // Get a temp filename
             // $filename = APP_PATH_TEMP . date('YmdHis') . "_" .
@@ -167,7 +172,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             $pdfFile = array('name' => basename($filename), 'type' => 'application/pdf',
                 'size' => filesize($filename), 'tmp_name' => $filename);
             $edoc_id = \Files::uploadFile($pdfFile);
-            if ($this->saveToExternalStorage) {
+            if ($this->saveToExternalStorage) { //TODO: Grab array structure of saveToExternalStorage
                 $externalFileStoreWrite=\Files::writeFilePdfAutoArchiverToExternalServer( basename($filename), $pdf);
                 \REDCap::logEvent($this->getModuleName(), "A PDF (" .
                 basename($filename) .
@@ -188,11 +193,11 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             }
 
             // Save it to the record
-            if (!empty($this->destinationFileField)) {
+            if (!empty($this->destinationFileField)) { //TODO: Add array structure to destinationFileField 
                 $data = [
                     $record => [
                         $event_id => [
-                            $this->destinationFileField => $edoc_id
+                            $this->destinationFileField => $edoc_id //TODO: Add array structure to destinationFileField
                         ]
                     ]
                 ];
@@ -218,14 +223,14 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
                     false           //$bypassPromisCheck = (isset($args[17])) ? $args[17] : false;
                 );
 
-                \REDCap::logEvent($this->getModuleName(), $this->destinationFileField .
+                \REDCap::logEvent($this->getModuleName(), $this->destinationFileField . //TODO: Add array structure to destinationFileField
                     " was updated with a new PDF containing data from " .
                     implode(",", $this->inputForms), "", $record, $event_id);
             }
 
 
             // // Save to file repository
-            if ($this->saveToFileRepo) {
+            if ($this->saveToFileRepo) { //TODO: Interrogate only this instance of saveToFileRepo in array
                 $pdf_form = empty($this->saveToAsSurvey) ? $last_form : $this->saveToAsSurvey;
                 if (empty($Proj->forms[$pdf_form]['survey_id'])) {
                     \REDCap::logEvent($this->getModuleName() . " Error",
