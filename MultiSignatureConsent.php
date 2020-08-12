@@ -6,7 +6,7 @@ require_once "emLoggerTrait.php";
 class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 
     use emLoggerTrait;
-    //TODO: Instantiate as arrays rather than dims
+    //TODO: Instantiate array versions to capture as well as vars
     public $evalLogic;
     public $destinationFileField;
     public $inputForms = [];
@@ -26,8 +26,26 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 		// Other code to run when object is instantiated
 	}
 
-    //TODO: Capture as arrays rather than dims
-    //TODO: Investigate capture of sub-sub-settings.
+    //TODO: Convert to capture as arrays rather than dims using array names from above
+    public function initializeArr() {ty @
+        $this->evalLogic            = $this->getProjectSetting('eval-logic');
+        $this->destinationFileField = $this->getProjectSetting('destination-file-field');
+        $this->header               = $this->getProjectSetting('header');
+        $this->footer               = $this->getProjectSetting('footer');
+        $this->saveToFileRepo       = $this->getProjectSetting('save-to-file-repo');
+        $this->saveToExternalStorage= $this->getProjectSetting('save-to-external-storage');
+        $this->saveToAsSurvey       = $this->getProjectSetting('save-to-as-survey');
+        $this::$KEEP_PAGE_BREAKS    = $this->getProjectSetting('keep-page-breaks');
+        $this::$KEEP_RECORD_ID_FIELD= $this->getProjectSetting('keep-record-id-field');
+
+        $instances = $this->framework->getSubSettings('instance'); //TODO: Does this detonate on multidimensional arrays?
+        foreach ($instances as $instance) {
+            $this->inputForms[] = $instance['form-name'];
+        }
+        // $this->emDebug($instances, $this->inputForms);
+    }
+
+
     public function initialize() {
         $this->evalLogic            = $this->getProjectSetting('eval-logic');
         $this->destinationFileField = $this->getProjectSetting('destination-file-field');
@@ -44,8 +62,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             $this->inputForms[] = $instance['form-name'];
         }
         // $this->emDebug($instances, $this->inputForms);
-    }
-
+    }    
 
     public function redcap_every_page_before_render() {
         if (PAGE == 'FileRepository/index.php') {
@@ -121,21 +138,25 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         try {
 
             global $Proj;
-            $this->initialize();
 
-            //TODO: Create flattened list of all targetted input forms and replace check below with this list
+            //TODO: Check config with initializeArr() array-capturing version of initialize()
+
+            //TODO: Start loop 
+
+
+            $this->initialize(); //TODO: Replace with variable injection from incremental element of initializeArr()
+
             // Make sure we are in one of the input forms
             if (!in_array($instrument, $this->inputForms)) {
                 $this->emDebug("$instrument is not in " . implode(",", $this->inputForms) . " -- skipping");
                 return false;
             }
 
-            //TODO: Initiate loop structure here
+            
             $this->emDebug("Saving $record on $instrument, event $event_id with logic $this->evalLogic");
             // $event_name = $Proj->longitudinal ? \REDCap::getEventNames(true,true,$event_id) : null;
-            $logic = \REDCap::evaluateLogic($this->evalLogic, $project_id, $record, $event_id); //TODO: Iterate along evalLogic array
+            $logic = \REDCap::evaluateLogic($this->evalLogic, $project_id, $record, $event_id); 
 
-            //TODO: Iterate along evalLogic
             if (empty($this->evalLogic) || $logic == false) { 
                 // Skip - nothing to do here
                 $this->emDebug("Skip");
@@ -144,17 +165,17 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 
             $this->emDebug("Logic True");
 
+
             // Make a PDF
             //$this->emDebug("Making PDF", self::$MAKING_PDF);
             self::$MAKING_PDF = true;
 
-            //TODO: Grab inputForms subarray (rather than parent array)
             // Always start with the 'first form' as the template
             $first_form = $this->inputForms[0];
             $last_form = $this->inputForms[count($this->inputForms) -1 ];
 
             $pdf        = \REDCap::getPDF($record, $first_form, $event_id, false, $repeat_instance,
-                true, $this->header, $this->footer); //TODO: header and footer to array grabs
+                true, $this->header, $this->footer); 
 
             // Get a temp filename
             // $filename = APP_PATH_TEMP . date('YmdHis') . "_" .
@@ -162,9 +183,11 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             //     $record . ".pdf";
             $recordFilename = str_replace(" ", "_", trim(preg_replace("/[^0-9a-zA-Z- ]/", "", $record)));
             $formFilename   = str_replace(" ", "_", trim(preg_replace("/[^0-9a-zA-Z- ]/", "", $Proj->forms[$first_form]['menu'])));
+            
+            //TODO: Append incrementer information in rare case where a file is compiled identically on a single pass?
             $filename       = APP_PATH_TEMP . "pid" . $this->getProjectId() .
                 "_form" . $formFilename . "_id" . $recordFilename . "_" . date('Y-m-d_His') . ".pdf";
-
+            
             // Make a file with the PDF
             file_put_contents($filename, $pdf);
 
@@ -172,7 +195,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             $pdfFile = array('name' => basename($filename), 'type' => 'application/pdf',
                 'size' => filesize($filename), 'tmp_name' => $filename);
             $edoc_id = \Files::uploadFile($pdfFile);
-            if ($this->saveToExternalStorage) { //TODO: Grab array structure of saveToExternalStorage
+            if ($this->saveToExternalStorage) { 
                 $externalFileStoreWrite=\Files::writeFilePdfAutoArchiverToExternalServer( basename($filename), $pdf);
                 \REDCap::logEvent($this->getModuleName(), "A PDF (" .
                 basename($filename) .
@@ -193,11 +216,11 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             }
 
             // Save it to the record
-            if (!empty($this->destinationFileField)) { //TODO: Add array structure to destinationFileField 
+            if (!empty($this->destinationFileField)) { 
                 $data = [
                     $record => [
                         $event_id => [
-                            $this->destinationFileField => $edoc_id //TODO: Add array structure to destinationFileField
+                            $this->destinationFileField => $edoc_id 
                         ]
                     ]
                 ];
@@ -223,14 +246,14 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
                     false           //$bypassPromisCheck = (isset($args[17])) ? $args[17] : false;
                 );
 
-                \REDCap::logEvent($this->getModuleName(), $this->destinationFileField . //TODO: Add array structure to destinationFileField
+                \REDCap::logEvent($this->getModuleName(), $this->destinationFileField . 
                     " was updated with a new PDF containing data from " .
                     implode(",", $this->inputForms), "", $record, $event_id);
             }
 
 
             // // Save to file repository
-            if ($this->saveToFileRepo) { //TODO: Interrogate only this instance of saveToFileRepo in array
+            if ($this->saveToFileRepo) { 
                 $pdf_form = empty($this->saveToAsSurvey) ? $last_form : $this->saveToAsSurvey;
                 if (empty($Proj->forms[$pdf_form]['survey_id'])) {
                     \REDCap::logEvent($this->getModuleName() . " Error",
@@ -254,6 +277,9 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         } catch(\Exception $e) {
             $this->emError($e->getMessage(), "Line: " . $e->getLine(), $e->getTraceAsString());
         }
+        //TODO: End loop?
+
+        //TODO: Add catch around loop
     }
 
 
