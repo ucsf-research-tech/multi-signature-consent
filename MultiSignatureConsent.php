@@ -132,7 +132,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             $target_cnt, "", $record, $event_id);
 
 
-            }
+            
             } catch(\Exception $e) {
                 $this->emError($e->getMessage(), "Line: " . $e->getLine(), $e->getTraceAsString());
             }
