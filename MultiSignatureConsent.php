@@ -136,13 +136,18 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 
             global $Proj;
 
+            REDCap::logEvent($this->getModuleName() . " Debug",
+                            "Check config with initializeArr()", "", $record, $event_id);
             //TODO: Check config with initializeArr() array-capturing version of initialize()
             $this->initializeArr();
 
             // Start loop through configured eval logics 
+
             $target_cnt=count($evalLogicArr[] );
             for($target = 0; $target <= $target_cnt-1; $target++){
-                
+                REDCap::logEvent($this->getModuleName() . " Debug",
+                "Loop", "", $record, $event_id);
+
                 //$this->initialize(); // <== OLD from original one-pass version
                 //Get the current target's settings from the initialization array:
                 $evalLogic = $evalLogicArr[$target];
