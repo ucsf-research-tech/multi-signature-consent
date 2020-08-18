@@ -57,10 +57,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         $this::$KEEP_PAGE_BREAKS    = $this->getProjectSetting('keep-page-breaks');
         $this::$KEEP_RECORD_ID_FIELD= $this->getProjectSetting('keep-record-id-field');
 
-        $instances = $this->framework->getSubSettings('instance');
-        foreach ($instances as $instance) {
-            $this->inputForms[] = $instance['form-name'];
-        }
+        $this->$instances= $this->getProjectSetting('instance');
         // $this->emDebug($instances, $this->inputForms);
     }    
 
@@ -140,18 +137,28 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             global $Proj;
 
             //TODO: Check config with initializeArr() array-capturing version of initialize()
- 
-            
+            $this->initializeArr();
 
+            // Start loop through configured eval logics 
+            $target_cnt=count($evalLogicArr[] );
+            for($target = 0; $target <= $target_cnt-1; $target++){
+                
+                //$this->initialize(); // <== OLD from original one-pass version
+                //Get the current target's settings from the initialization array:
+                $evalLogic = $evalLogicArr[$target];
+                $destinationFileField = $destinationFileFieldArr[$target];
+                $header = $headerArr[$target];
+                $footer = $footerArr[$target];
+                $saveToFileRepo = $saveToFileRepoArr[$target];
+                $saveToExternalStorage = $saveToExternalStorageArr[$target];
+                $saveToAsSurvey = $saveToAsSurveyArr[$target];
+                $KEEP_PAGE_BREAKS = $KEEP_PAGE_BREAKSArr[$target];
+                $KEEP_RECORD_ID_FIELD = $KEEP_RECORD_ID_FIELDArr[$target];
+                foreach ($instances[$target] as $instance) {
+                    $this->inputForms[] = $instance['form-name'];
+                }
 
-
-
-            //TODO: Start loop 
-            $target_cnt=count($indices);
-            for($target = 0; $target <= $target_cnt-1; $target++)
-
-                $this->initialize(); //TODO: Replace with variable injection from incremental element of initializeArr()
-
+                // Process extant forms
                 // Make sure we are in one of the input forms
                 if (!in_array($instrument, $this->inputForms)) {
                     $this->emDebug("$instrument is not in " . implode(",", $this->inputForms) . " -- skipping");
