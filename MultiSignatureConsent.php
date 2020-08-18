@@ -287,11 +287,12 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
                 }
 
                 self::$MAKING_PDF = false;
+            }
             } catch(\Exception $e) {
                 $this->emError($e->getMessage(), "Line: " . $e->getLine(), $e->getTraceAsString());
             }
         //TODO: End loop?
-
+        
         //TODO: Add catch around loop
     }
 
