@@ -38,28 +38,10 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         $this::$KEEP_PAGE_BREAKSArr[]    = $this->getProjectSetting('keep-page-breaks'); //TODO were these reserved tokens?
         $this::$KEEP_RECORD_ID_FIELDArr[]= $this->getProjectSetting('keep-record-id-field'); //TODO were these reserved tokens?
 
-        $instances = $this->framework->getSubSettings('instance'); //TODO: Does this detonate on multidimensional arrays?
-        foreach ($instances as $instance) {
-            $this->inputForms[] = $instance['form-name'];
-        }
+        $instances[]                     = $this->getProjectSetting('instance'); //TODO: Does this detonate on multidimensional arrays?
         // $this->emDebug($instances, $this->inputForms);
     }
 
-
-    public function initialize() {
-        $this->evalLogic            = $this->getProjectSetting('eval-logic');
-        $this->destinationFileField = $this->getProjectSetting('destination-file-field');
-        $this->header               = $this->getProjectSetting('header');
-        $this->footer               = $this->getProjectSetting('footer');
-        $this->saveToFileRepo       = $this->getProjectSetting('save-to-file-repo');
-        $this->saveToExternalStorage= $this->getProjectSetting('save-to-external-storage');
-        $this->saveToAsSurvey       = $this->getProjectSetting('save-to-as-survey');
-        $this::$KEEP_PAGE_BREAKS    = $this->getProjectSetting('keep-page-breaks');
-        $this::$KEEP_RECORD_ID_FIELD= $this->getProjectSetting('keep-record-id-field');
-
-        $this->$instances= $this->getProjectSetting('instance');
-        // $this->emDebug($instances, $this->inputForms);
-    }    
 
     public function redcap_every_page_before_render() {
         if (PAGE == 'FileRepository/index.php') {
