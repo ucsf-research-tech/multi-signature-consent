@@ -127,7 +127,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 
             // Start loop through configured eval logics 
 
-            $target_cnt=count($evalLogicArr[] );
+            $target_cnt=count($evalLogicArr );
             \REDCap::logEvent($this->getModuleName() . " Target count",
             $target_cnt, "", $record, $event_id);
 
