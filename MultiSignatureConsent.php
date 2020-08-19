@@ -114,5 +114,8 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 
 
 	public function redcap_save_record( $project_id, $record, $instrument, $event_id, $group_id = NULL, $survey_hash = NULL, $response_id = NULL, $repeat_instance = 1) {
+        REDCap::logEvent($this->getModuleName() . " Debug",
+        "Save Record triggered", "", $record, $event_id);
+  
     }
 }
