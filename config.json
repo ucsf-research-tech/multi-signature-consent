@@ -55,6 +55,12 @@
                     "type": "field-list"
                 },
                 {
+                    "key": "event-name",
+                    "name": "<b>Event Name</b><br>This is the event which contains the forms to be assembled into a PDF. This module can only assemble forms in a single event in each pass.",
+                    "required": true,
+                    "type": "event-list"
+                },
+                {
                     "key": "instance",
                     "name": "<b>Instruments to Merge</b>",
                     "required": true,
