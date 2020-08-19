@@ -16,6 +16,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
     public $saveToExternalStorage;
     public $saveToAsSurvey;
 
+
     private static $MAKING_PDF = false;
 
     private static $KEEP_RECORD_ID_FIELD = false;
@@ -35,8 +36,8 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         $this->saveToFileRepoArr[]       = $this->getProjectSetting('save-to-file-repo');
         $this->saveToExternalStorageArr[]= $this->getProjectSetting('save-to-external-storage');
         $this->saveToAsSurveyArr[]       = $this->getProjectSetting('save-to-as-survey');
-        $this::$KEEP_PAGE_BREAKSArr[]    = $this->getProjectSetting('keep-page-breaks'); //TODO were these reserved tokens?
-        $this::$KEEP_RECORD_ID_FIELDArr[]= $this->getProjectSetting('keep-record-id-field'); //TODO were these reserved tokens?
+        $this->$KEEP_PAGE_BREAKSArr[]    = $this->getProjectSetting('keep-page-breaks'); //TODO were these reserved tokens?
+        $this->$KEEP_RECORD_ID_FIELDArr[]= $this->getProjectSetting('keep-record-id-field'); //TODO were these reserved tokens?
 
         $instances[]                     = $this->getProjectSetting('instance'); //TODO: Does this detonate on multidimensional arrays?
         // $this->emDebug($instances, $this->inputForms);
