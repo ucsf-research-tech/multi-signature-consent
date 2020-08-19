@@ -139,7 +139,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             // Start loop through configured eval logics 
 
             \REDCap::logEvent($this->getModuleName() . " Target count",
-            $this->getProjectSetting('eval-logic'), "", $record, $event_id);
+            $this->getSubSettings('eval-logic'), "", $record, $event_id);
 
 
             $target_cnt=count($evalLogicArr );
