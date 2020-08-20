@@ -88,11 +88,6 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
         getType($logic['instance']) . ": " . $logic['instance'] . "\nContents: " . $instanceArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($instanceArr),"", $record, $event_id);
 
-        foreach ($instancesArr as $n=>$instance) {
-
-            \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
-        getType($instance['form-name']) . ": " . $logic['form-name'] . "\nContents: " . $instanceArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($instanceArr),"", $record, $event_id);
-        }
 
     }
     
