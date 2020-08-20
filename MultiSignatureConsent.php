@@ -227,7 +227,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             //TODO: Check config with initializeArr() array-capturing version of initialize()
             
             $this->initializeArr();
-            $this->initialize(0);
+            $this->initialize(1);
             return; //TODO continue past this point by removing return once we have initializeArr working
             
             
