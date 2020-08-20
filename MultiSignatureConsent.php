@@ -107,16 +107,6 @@ $logic_instance_0=$logic['instance'][0];
 
 
 
-//        $instances[] = $this->instanceArr[$n];
-//TODO: Restore instance and form-names once initialize() works
-        foreach ($instanceArr[$n] as $instances) {
-            foreach($instances as $instance) {
-                $this->inputForms[] = $instance;//['form-name'];
-
-            \REDCap::logEvent($this->getModuleName() . " instance storeds",
-            "Instance: "  . $instance,"", $record, $event_id);
-            }
-        }
         // $this->emDebug($instances, $this->inputForms);
     }
 
