@@ -82,7 +82,9 @@ $logics = $this->framework->getSubSettings('compilation-passes');
         foreach ($instanceArr as $m=>$instance) {
 
             \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
-            getType($instanceArr[$m]) . ": " . $instanceArr[$m] . "\nContents: " . $instanceArr[$m]  . "\nIncrementer: " . $m . "\nArray size: " . count($instanceArr),"", $record, $event_id);
+            getType($instanceArr[$m]) . ": " . $instanceArr[$m] . "\nContents: " . $instanceArr[$m]  . "\nIncrementer: " . $m . "\nArray size: " . count($instanceArr[$m]),"", $record, $event_id);
+
+
         }
 
         \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
