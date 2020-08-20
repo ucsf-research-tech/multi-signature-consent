@@ -38,10 +38,15 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 	}
 
     //TODO: Convert to capture as arrays rather than dims using array names from above
+
+
+        
+
+
     public function initializeArr() {
 
             
-            
+  /*          
         $logics = $this->framework->getSubSettings('compilation-passes');
         \REDCap::logEvent($this->getModuleName() . " SubSettings structure",
         getType($logics) . " with " . count($logics) . " elements","", $record, $event_id);
@@ -64,8 +69,27 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             \REDCap::logEvent($this->getModuleName() . " evalLogicArr internal structure",
             getType($logic['eval-logic']) . ": " . $logic['eval-logic'] . "\nContents: " . $evalLogicArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($evalLogicArr),"", $record, $event_id);
         }
+*/
+    $logics = $this->framework->getSubSettings('compilation-passes');
 
-            
+    foreach ($logics as $n=>$logic) {
+        $evalLogicArr[$n]           = $logic['eval-logic'];
+        $destinationFileFieldArr[$n]           = $logic['destination-file-field'];
+        $headerArr[$n]           = $logic['header'];
+        $footerArr[$n]           = $logic['footer'];
+        $headerArr[$n]           = $logic['eval-logic'];
+        $saveToFileRepoArr[$n]           = $logic['save-to-file-repo'];
+        $saveToExternalStorageArr[$n]           = $logic['save-to-external-storage'];
+        $saveToAsSurveyArr[$n]           = $logic['save-to-as-survey'];
+        $$KEEP_PAGE_BREAKSArr[$n]           = $logic['keep-page-breaks'];
+        $KEEP_RECORD_ID_FIELDArr[$n]           = $logic['keep-record-id-field'];
+
+        $instances[$n]           = $logic['instance'];
+        \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
+        getType($logic['instance']) . ": " . $logic['instance'] . "\nContents: " . $instanceArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($instanceArr),"", $record, $event_id);
+
+    }
+    
 
 
         //TODO replace debug code above with actual gathering of arrays:
