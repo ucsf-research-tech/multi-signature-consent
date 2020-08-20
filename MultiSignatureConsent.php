@@ -168,7 +168,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             }
             
             //$this->initializeArr();
-            return; //TODO continue past this point by removing return once we have initializeArr working
+            //return; //TODO continue past this point by removing return once we have initializeArr working
             
             
             
