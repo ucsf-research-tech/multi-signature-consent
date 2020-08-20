@@ -88,6 +88,12 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
         getType($logic['instance']) . ": " . $logic['instance'] . "\nContents: " . $instanceArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($instanceArr),"", $record, $event_id);
 
+        foreach ($instancesArr as $n=>$instance) {
+
+            \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
+        getType($instance['form-name']) . ": " . $logic['form-name'] . "\nContents: " . $instanceArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($instanceArr),"", $record, $event_id);
+        }
+
     }
     
 
@@ -121,7 +127,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         $this::$KEEP_PAGE_BREAKS    = $this->$KEEP_PAGE_BREAKSArr[$n];
         $this::$KEEP_RECORD_ID_FIELD= $this->$KEEP_RECORD_ID_FIELDArr[$n];
 
-        \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
+        \REDCap::logEvent($this->getModuleName() . " Intialize()",
         "$evalLogic: " . $evalLogic . "\n$destinationFileField: " . $destinationFileField . "\n$header: " . $header . "\n$footer: " . $footer . "\n$saveToFileRepo: " . $saveToFileRepo . "\n$saveToExternalStorage: " . $saveToExternalStorage . "\n$saveToAsSurvey: " . $saveToAsSurvey . "\n$KEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKS . "\n$KEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELD,"", $record, $event_id);
 
 
