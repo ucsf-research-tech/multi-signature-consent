@@ -39,6 +39,34 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 
     //TODO: Convert to capture as arrays rather than dims using array names from above
     public function initializeArr() {
+
+
+            
+        $logics = $this->framework->getSubSettings('compilation-passes');
+        \REDCap::logEvent($this->getModuleName() . " SubSettings structure",
+        getType($logics) . " with " . count($logics) . " elements","", $record, $event_id);
+
+        \REDCap::logEvent($this->getModuleName() . " SubSettings output",
+        implode(",",$logics), "", $record, $event_id);
+
+        \REDCap::logEvent($this->getModuleName() . " SubSettings internal structure",
+        getType($logics[0]) . " with " . count($logics) . " elements","", $record, $event_id);
+
+        \REDCap::logEvent($this->getModuleName() . " SubSettings internal output",
+        implode(",",$logics[0]), "", $record, $event_id);
+        \REDCap::logEvent($this->getModuleName() . " evalLogicArr internal structure",
+        getType($evalLogicArr) . " with " . count($evalLogicArr) . " elements","", $record, $event_id);
+
+
+
+        foreach ($logics as $n=>$logic) {
+            $evalLogicArr[$n] = $logic['eval-logic'];
+            \REDCap::logEvent($this->getModuleName() . " evalLogicArr internal structure",
+            getType($logic['eval-logic']) . ": " . $logic['eval-logic'] . "\nContents: " . $evalLogicArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($evalLogicArr),"", $record, $event_id);
+        }
+
+        //TODO replace debug code above with actual gathering of arrays:
+        /*
         $this->evalLogicArr[]            = $this->getProjectSetting('eval-logic');
         $this->destinationFileFieldArr[] = $this->getProjectSetting('destination-file-field');
         $this->headerArr[]               = $this->getProjectSetting('header');
@@ -51,6 +79,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 
         $this->$instances[]              = $this->getProjectSetting('instance'); //TODO: Does this detonate on multidimensional arrays?
         // $this->emDebug($instances, $this->inputForms);
+        */
     }
 
 
@@ -134,9 +163,21 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             \REDCap::logEvent($this->getModuleName() . " Debug",
                             "Check config with initializeArr()", "", $record, $event_id);
             //TODO: Check config with initializeArr() array-capturing version of initialize()
-            $this->initializeArr();
+            
+            
 
+            
+            $this->initializeArr();
+            return; //TODO continue past this point by removing return once we have initializeArr working
+            
+            
+            
+            
             // Start loop through configured eval logics 
+
+
+
+
 
             \REDCap::logEvent($this->getModuleName() . " Target count",
             $this->getSubSettings('eval-logic'), "", $record, $event_id);
