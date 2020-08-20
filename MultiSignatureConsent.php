@@ -113,7 +113,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
     }
 
 
-	public function initialize($n,&$evalLogic) {
+	public function initialize($n,&$evalLogicArr,&$evalLogic) {
         $evalLogic            = $evalLogicArr[$n];
         $this->destinationFileField = $this->destinationFileFieldArr[$n];
         $this->header               = $this->headerArr[$n];
@@ -233,7 +233,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             "n: " . $n . "\nevalLogic: " . $evalLogicArr[$n] . "\ndestinationFileField: " . $destinationFileFieldArr[$n] . "\nheader: " . $headerArr[$n] . "\nfooter: " . $footerArr[$n] . "\nsaveToFileRepo: " . $saveToFileRepoArr[$n] . "\nsaveToExternalStorage: " . $saveToExternalStorageArr[$n] . "\nsaveToAsSurvey: " . $saveToAsSurveyArr[$n] . "\nKEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKSArr[$n] . "\nKEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELDArr[$n],"", $record, $event_id);
             unset($n);
 
-            $this->initialize(1,$evalLogic);
+            $this->initialize(1,$evalLogicArr,$evalLogic);
             return; //TODO continue past this point by removing return once we have initializeArr working
             
             
