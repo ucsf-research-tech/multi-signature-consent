@@ -86,6 +86,10 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         \REDCap::logEvent($this->getModuleName() . " Intialize()",
         "evalLogic: " . $evalLogicArr[$n] . "\ndestinationFileField: " . $destinationFileFieldArr[$n] . "\nheader: " . $headerArr[$n] . "\nfooter: " . $footerArr[$n] . "\nsaveToFileRepo: " . $saveToFileRepoArr[$n] . "\nsaveToExternalStorage: " . $saveToExternalStorageArr[$n] . "\nsaveToAsSurvey: " . $saveToAsSurveyArr[$n] . "\nKEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKSArr[$n] . "\nKEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELDArr[$n],"", $record, $event_id);
 
+
+
+//TODO: Restore instance and form-names once initialize() works
+/*
         $instancesArr[$n]           = $logic['instance'];
         \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
         getType($logic['instance']) . ": " . $logic['instance'] . "\nContents: " . $instanceArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($instanceArr),"", $record, $event_id);
@@ -101,7 +105,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 
         \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
         "instanceArr keys: " . array_keys($instanceArr),"", $record, $event_id);
-
+*/
 
 
     }
@@ -126,14 +130,15 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 
 
 //        $instances[] = $this->instanceArr[$n];
-        foreach ($instanceArr[$n] as $instance) {
+//TODO: Restore instance and form-names once initialize() works
+/*        foreach ($instanceArr[$n] as $instance) {
             $this->inputForms[] = $instance['form-name'];
 
             \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
             "Instance: "  . $instance['form-name'],"", $record, $event_id);
     
         }
-        // $this->emDebug($instances, $this->inputForms);
+*/        // $this->emDebug($instances, $this->inputForms);
     }
 
 
