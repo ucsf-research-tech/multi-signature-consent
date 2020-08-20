@@ -44,30 +44,6 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
     ) {
 
             
-  /*          
-        $logics = $this->framework->getSubSettings('compilation-passes');
-        \REDCap::logEvent($this->getModuleName() . " SubSettings structure",
-        getType($logics) . " with " . count($logics) . " elements","", $record, $event_id);
-
-        \REDCap::logEvent($this->getModuleName() . " SubSettings output",
-        implode(",",$logics), "", $record, $event_id);
-
-        \REDCap::logEvent($this->getModuleName() . " SubSettings internal structure",
-        getType($logics[0]) . " with " . count($logics) . " elements","", $record, $event_id);
-
-        \REDCap::logEvent($this->getModuleName() . " SubSettings internal output",
-        implode(",",$logics[0]), "", $record, $event_id);
-        \REDCap::logEvent($this->getModuleName() . " evalLogicArr internal structure",
-        getType($evalLogicArr) . " with " . count($evalLogicArr) . " elements","", $record, $event_id);
-
-
-
-        foreach ($logics as $n=>$logic) {
-            $evalLogicArr[$n] = $logic['eval-logic'];
-            \REDCap::logEvent($this->getModuleName() . " evalLogicArr internal structure",
-            getType($logic['eval-logic']) . ": " . $logic['eval-logic'] . "\nContents: " . $evalLogicArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($evalLogicArr),"", $record, $event_id);
-        }
-*/
 \REDCap::logEvent($this->getModuleName() . " start",
 "Getting settings","", $record, $event_id);
 
@@ -98,14 +74,15 @@ $logics = $this->framework->getSubSettings('compilation-passes');
 
 //TODO: Restore instance and form-names once initialize() works
 
-        $instancesArr[$n]           = $logic['form-name'];
-        \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
-        getType($logic['instance']) . ": " . $logic['form-name'] . "\nContents: " . $instanceArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($instanceArr),"", $record, $event_id);
+        $instanceArr[$n]           = $logic['form-name'];
+
+            \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
+            getType($logic['form-name']) . ": " . $logic['form-name'] . "\nContents: " . $instanceArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($instanceArr),"", $record, $event_id);
 
         foreach ($instancesArr as $m=>$instance) {
 
             \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
-        getType($instanceArr[$m]) . ": " . $instanceArr[$m] . "\nContents: " . $instanceArr[$m]  . "\nIncrementer: " . $m . "\nArray size: " . count($instanceArr),"", $record, $event_id);
+            getType($instanceArr[$m]) . ": " . $instanceArr[$m] . "\nContents: " . $instanceArr[$m]  . "\nIncrementer: " . $m . "\nArray size: " . count($instanceArr),"", $record, $event_id);
         }
 
         \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
