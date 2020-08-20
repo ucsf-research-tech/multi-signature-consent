@@ -73,7 +73,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
     $logics = $this->framework->getSubSettings('compilation-passes');
 
     foreach ($logics as $n=>$logic) {
-        $this->$evalLogicArr[$n]           = $logic['eval-logic'];
+        $this->$evalLogicArr[$n]           = $this->$logic['eval-logic'];
         $this->$destinationFileFieldArr[$n]           = $logic['destination-file-field'];
         $this->$headerArr[$n]           = $logic['header'];
         $this->$footerArr[$n]           = $logic['footer'];
