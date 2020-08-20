@@ -85,9 +85,14 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         $KEEP_RECORD_ID_FIELDArr[$n]           = $logic['keep-record-id-field'];
 
         $instancesArr[$n]           = $logic['instance'];
-        \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
+        \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
         getType($logic['instance']) . ": " . $logic['instance'] . "\nContents: " . $instanceArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($instanceArr),"", $record, $event_id);
 
+        foreach ($instancesArr as $m=>$instance) {
+
+            \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
+        getType($instance['form-name']) . ": " . $logic['form-name'] . "\nContents: " . $instanceArr[$m]  . "\nIncrementer: " . $m . "\nArray size: " . count($instanceArr),"", $record, $event_id);
+        }
 
     }
     
