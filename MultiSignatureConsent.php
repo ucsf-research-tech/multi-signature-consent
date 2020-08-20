@@ -234,6 +234,10 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             unset($n);
 
             $this->initialize(1,$evalLogicArr,$destinationFileFieldArr,$headerArr,$footerArr,$saveToFileRepoArr,$saveToExternalStorageArr,$saveToAsSurveyArr,$KEEP_PAGE_BREAKSArr,$KEEP_RECORD_ID_FIELDArr);
+
+            \REDCap::logEvent($this->getModuleName() . " caller of Intialize()",
+            "n: " . $n . "\nevalLogic: " . $evalLogic . "\ndestinationFileField: " . $destinationFileField . "\nheader: " . $header . "\nfooter: " . $footer . "\nsaveToFileRepo: " . $saveToFileRepo . "\nsaveToExternalStorage: " . $saveToExternalStorage . "\nsaveToAsSurvey: " . $saveToAsSurvey . "\nKEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKS . "\nKEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELD,"", $record, $event_id);
+    
             return; //TODO continue past this point by removing return once we have initializeArr working
             
             
