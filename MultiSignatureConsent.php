@@ -133,8 +133,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         $this::$KEEP_RECORD_ID_FIELD= $this->$KEEP_RECORD_ID_FIELDArr[$n];
 
         \REDCap::logEvent($this->getModuleName() . " Intialize()",
-        "$evalLogic: " . $evalLogic . "\n$destinationFileField: " . $destinationFileField . "\n$header: " . $header . "\n$footer: " . $footer . "\n$saveToFileRepo: " . $saveToFileRepo . "\n$saveToExternalStorage: " . $saveToExternalStorage . "\n$saveToAsSurvey: " . $saveToAsSurvey . "\n$KEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKS . "\n$KEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELD,"", $record, $event_id);
-
+        "evalLogic: " . $evalLogic . "\ndestinationFileField: " . $destinationFileField . "\nheader: " . $header . "\nfooter: " . $footer . "\nsaveToFileRepo: " . $saveToFileRepo . "\nsaveToExternalStorage: " . $saveToExternalStorage . "\nsaveToAsSurvey: " . $saveToAsSurvey . "\nKEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKS . "\nKEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELD,"", $record, $event_id);
 
 
 
