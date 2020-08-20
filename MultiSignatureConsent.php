@@ -84,6 +84,11 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         $$KEEP_PAGE_BREAKSArr[$n]           = $logic['keep-page-breaks'];
         $KEEP_RECORD_ID_FIELDArr[$n]           = $logic['keep-record-id-field'];
 
+        \REDCap::logEvent($this->getModuleName() . " Intialize()",
+        "$evalLogic: " . $evalLogicArr[$n] . "\n$destinationFileField: " . $destinationFileFieldArr[$n] . "\n$header: " . $headerArr[$n] . "\n$footer: " . $footerArr[$n] . "\n$saveToFileRepo: " . $saveToFileRepoArr[$n] . "\n$saveToExternalStorage: " . $saveToExternalStorageArr[$n] . "\n$saveToAsSurvey: " . $saveToAsSurveyArr[$n] . "\n$KEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKSArr[$n] . "\n$KEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELDArr[$n],"", $record, $event_id);
+
+        
+        
         $instancesArr[$n]           = $logic['instance'];
         \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
         getType($logic['instance']) . ": " . $logic['instance'] . "\nContents: " . $instanceArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($instanceArr),"", $record, $event_id);
