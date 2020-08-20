@@ -73,16 +73,16 @@ $logics = $this->framework->getSubSettings('compilation-passes');
 
 
 //TODO: Restore instance and form-names once initialize() works
+        $instances = $this->framework->getSubSettings('instance')
+//        $instanceArr[$n]           = $logic['instance'];
+// \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
+// getType($logic['instance']) . ": " . $logic['instance'] . "\nContents: " . $instanceArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($instanceArr),"", $record, $event_id);
 
-        $instanceArr[$n]           = $logic['instance'];
-
-            \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
-            getType($logic['instance']) . ": " . $logic['instance'] . "\nContents: " . $instanceArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($instanceArr),"", $record, $event_id);
-
-        foreach ($instanceArr as $m=>$instance) {
+  
+        foreach ($instances as $m=>$instance) {
 
             \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
-            getType($instanceArr[$m]) . ": " . $instanceArr[$m] . "\nContents: " . $instanceArr[$m]  . "\nIncrementer: " . $m . "\nArray size: " . count($instanceArr[$m]),"", $record, $event_id);
+            getType($logic['form-name']) . ": " . $logic['form-name'] . "\nContents: " . 0  . "\nIncrementer: " . $m . "\nArray size: " . count($instanceArr[$m]),"", $record, $event_id);
 
 
         }
