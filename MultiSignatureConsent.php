@@ -91,9 +91,9 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 
 //TODO: Restore instance and form-names once initialize() works
 
-        $instancesArr[$n]           = $logic['instance'];
+        $instancesArr[$n]           = $logic['form-name'];
         \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
-        getType($logic['instance']) . ": " . $logic['instance'] . "\nContents: " . $instanceArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($instanceArr),"", $record, $event_id);
+        getType($logic['instance']) . ": " . $logic['form-name'] . "\nContents: " . $instanceArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($instanceArr),"", $record, $event_id);
 
         foreach ($instancesArr as $m=>$instance) {
 
