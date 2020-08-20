@@ -73,22 +73,9 @@ $logics = $this->framework->getSubSettings('compilation-passes');
 
 
 //TODO: Restore instance and form-names once initialize() works
-        $instances = $this->framework->getSubSettings('instance')
-//        $instanceArr[$n]           = $logic['instance'];
-// \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
-// getType($logic['instance']) . ": " . $logic['instance'] . "\nContents: " . $instanceArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($instanceArr),"", $record, $event_id);
-
-  
-        foreach ($instances as $m=>$instance) {
-
-            \REDCap::logEvent($this->getModuleName() . " instances internal structure",
-            getType($logic['form-name']) . ": " . $logic['form-name'] . "\nContents: " . 0  . "\nIncrementer: " . $m . "\nArray size: " . count($logic['form-name']),"", $record, $event_id);
-
-
-        }
 
         \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
-        "logic keys: " . array_keys($logic),"", $record, $event_id);
+        "logic[form-name]" . implode(",",$logic['form-name']) . "logic[instance]" . implode(",",$logic['instance']) ,"", $record, $event_id);
 
         \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
         "instanceArr keys: " . array_keys($instanceArr),"", $record, $event_id);
