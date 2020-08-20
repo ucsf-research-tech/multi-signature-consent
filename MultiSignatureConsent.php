@@ -73,8 +73,12 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 */
     $logics = $this->framework->getSubSettings('compilation-passes');
 
-    \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
+    \REDCap::logEvent($this->getModuleName() . " logics external structure",
     "logics keys: " . array_keys($logics),"", $record, $event_id);
+
+    \REDCap::logEvent($this->getModuleName() . " logics implosion structure",
+    "logics: " . implode(",",$logics),"", $record, $event_id);
+
 
     foreach ($logics as $n=>$logic) {
         $evalLogicArr[$n]           = $logic['eval-logic'];
