@@ -74,10 +74,10 @@ $logics = $this->framework->getSubSettings('compilation-passes');
 
 //TODO: Restore instance and form-names once initialize() works
 
-        $instanceArr[$n]           = $logic['form-name'];
+        $instanceArr[$n]           = $logic['instance'];
 
             \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
-            getType($logic['form-name']) . ": " . $logic['form-name'] . "\nContents: " . $instanceArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($instanceArr),"", $record, $event_id);
+            getType($logic['instance']) . ": " . $logic['instance'] . "\nContents: " . $instanceArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($instanceArr),"", $record, $event_id);
 
         foreach ($instanceArr as $m=>$instance) {
 
