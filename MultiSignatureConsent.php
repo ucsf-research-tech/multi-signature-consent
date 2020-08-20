@@ -40,7 +40,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
     //TODO: Convert to capture as arrays rather than dims using array names from above
 
     //TODO: remove this support function (https://gist.github.com/jimmygle/2564610)
-    function recursive_implode(array $array, $glue = ',', $include_keys = false, $trim_all = true)
+    public function recursive_implode(array $array, $glue = ',', $include_keys = false, $trim_all = true)
     {
         $glued_string = '';
     
