@@ -111,15 +111,15 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 
 
 	public function initialize($n) {
-        $this->evalLogic            = $this->evalLogicArr[$n]Arr[$n]
-        $this->destinationFileField = $this->destinationFileFieldArr[$n]Arr[$n]
-        $this->header               = $this->headerArr[$n]Arr[$n]
-        $this->footer               = $this->footerArr[$n]Arr[$n]
-        $this->saveToFileRepo       = $this->saveToFileRepoArr[$n]Arr[$n]
-        $this->saveToExternalStorage= $this->saveToExternalStorageArr[$n]
-        $this->saveToAsSurvey       = $this->saveToAsSurveyArr[$n]Arr[$n]
-        $this::$KEEP_PAGE_BREAKS    = $this->$KEEP_PAGE_BREAKSArr[$n]Arr[$n]
-        $this::$KEEP_RECORD_ID_FIELD= $this->$KEEP_RECORD_ID_FIELDArr[$n]
+        $this->evalLogic            = $this->evalLogicArr[$n];
+        $this->destinationFileField = $this->destinationFileFieldArr[$n];
+        $this->header               = $this->headerArr[$n];
+        $this->footer               = $this->footerArr[$n];
+        $this->saveToFileRepo       = $this->saveToFileRepoArr[$n];
+        $this->saveToExternalStorage= $this->saveToExternalStorageArr[$n];
+        $this->saveToAsSurvey       = $this->saveToAsSurveyArr[$n];
+        $this::$KEEP_PAGE_BREAKS    = $this->$KEEP_PAGE_BREAKSArr[$n];
+        $this::$KEEP_RECORD_ID_FIELD= $this->$KEEP_RECORD_ID_FIELDArr[$n];
 
         \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
         "$evalLogic: " . $evalLogic . "\n$destinationFileField: " . $destinationFileField . "\n$header: " . $header . "\n$footer: " . $footer . "\n$saveToFileRepo: " . $saveToFileRepo . "\n$saveToExternalStorage: " . $saveToExternalStorage . "\n$saveToAsSurvey: " . $saveToAsSurvey . "\n$KEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKS . "\n$KEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELD,"", $record, $event_id);
