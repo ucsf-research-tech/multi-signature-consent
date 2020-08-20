@@ -74,9 +74,9 @@ $logics = $this->framework->getSubSettings('compilation-passes');
 
 //TODO: Restore instance and form-names once initialize() works
 
-foreach ($logic['instance'] as $m=>$instance)
+foreach ($logic['instance'] as $m=>$instance) //TODO: Make this an associative array
 {
-    $instanceArr[$n][$m]=$logic['instance'][$m];
+    $instanceArr[$n][$m]=$logic['instance'][$m]; //TODO: Replace with [$n][] and let array take care of itself
     \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
     "instanceArr[$n][$m]" . implode(",",$logic['instance'][$m]),"", $record, $event_id);
 }
@@ -108,11 +108,12 @@ $logic_instance_0=$logic['instance'][0];
 
 //        $instances[] = $this->instanceArr[$n];
 //TODO: Restore instance and form-names once initialize() works
-        foreach ($instanceArr[$n] as $instance) {
-            $this->inputForms[] = $instance['form-name'];
+        foreach ($instanceArr[$n] as $instances) {
+            foreach($instances as $instance)
+            $this->inputForms[] = $instance;//['form-name'];
 
             \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
-            "Instance: "  . $instance['form-name'],"", $record, $event_id);
+            "Instance: "  . $instance,"", $record, $event_id);
     
         }
         // $this->emDebug($instances, $this->inputForms);
