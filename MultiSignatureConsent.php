@@ -84,7 +84,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         $KEEP_RECORD_ID_FIELDArr[$n]           = $logic['keep-record-id-field'];
 
         \REDCap::logEvent($this->getModuleName() . " Intialize()",
-        "evalLogic: " . $evalLogicArr[$n] . "\ndestinationFileField: " . $destinationFileFieldArr[$n] . "\nheader: " . $headerArr[$n] . "\nfooter: " . $footerArr[$n] . "\nsaveToFileRepo: " . $saveToFileRepoArr[$n] . "\nsaveToExternalStorage: " . $saveToExternalStorageArr[$n] . "\nsaveToAsSurvey: " . $saveToAsSurveyArr[$n] . "\nKEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKSArr[$n] . "\nKEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELDArr[$n],"", $record, $event_id);
+        "n: " . $n . "evalLogic: " . $evalLogicArr[$n] . "\ndestinationFileField: " . $destinationFileFieldArr[$n] . "\nheader: " . $headerArr[$n] . "\nfooter: " . $footerArr[$n] . "\nsaveToFileRepo: " . $saveToFileRepoArr[$n] . "\nsaveToExternalStorage: " . $saveToExternalStorageArr[$n] . "\nsaveToAsSurvey: " . $saveToAsSurveyArr[$n] . "\nKEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKSArr[$n] . "\nKEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELDArr[$n],"", $record, $event_id);
 
 
 
@@ -109,7 +109,6 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 
 
     }
-    
     }
 
 
@@ -125,7 +124,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         $this::$KEEP_RECORD_ID_FIELD= $this->$KEEP_RECORD_ID_FIELDArr[$n];
 
         \REDCap::logEvent($this->getModuleName() . " Intialize()",
-        "evalLogic: " . $evalLogic . "\ndestinationFileField: " . $destinationFileField . "\nheader: " . $header . "\nfooter: " . $footer . "\nsaveToFileRepo: " . $saveToFileRepo . "\nsaveToExternalStorage: " . $saveToExternalStorage . "\nsaveToAsSurvey: " . $saveToAsSurvey . "\nKEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKS . "\nKEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELD,"", $record, $event_id);
+        "n: " . $n . "evalLogic: " . $evalLogic . "\ndestinationFileField: " . $destinationFileField . "\nheader: " . $header . "\nfooter: " . $footer . "\nsaveToFileRepo: " . $saveToFileRepo . "\nsaveToExternalStorage: " . $saveToExternalStorage . "\nsaveToAsSurvey: " . $saveToAsSurvey . "\nKEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKS . "\nKEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELD,"", $record, $event_id);
 
 
 
