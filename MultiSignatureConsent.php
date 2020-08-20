@@ -113,7 +113,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
     }
 
 
-    public function initialize($n,&$evalLogicArr,&$destinationFileFieldArr,&$headerArr,&$footerArr,&$saveToFileRepoArr,&$saveToExternalStorageArr,&$saveToAsSurveyArr,&$KEEP_PAGE_BREAKSArr,&$KEEP_RECORD_ID_FIELDArr,&$evalLogic,&$destinationFileField,&$header,&$footer,&$saveToFileRepo,&$saveToExternalStorage,&$saveToAsSurvey,&$KEEP_PAGE_BREAKS,&$KEEP_RECORD_ID_FIELD) {
+    public function initialize($n,&$evalLogicArr,&$destinationFileFieldArr,&$headerArr,&$footerArr,&$saveToFileRepoArr,&$saveToExternalStorageArr,&$saveToAsSurveyArr,&$KEEP_PAGE_BREAKSArr,&$KEEP_RECORD_ID_FIELDArr,&$instanceArr,&$evalLogic,&$destinationFileField,&$header,&$footer,&$saveToFileRepo,&$saveToExternalStorage,&$saveToAsSurvey,&$KEEP_PAGE_BREAKS,&$KEEP_RECORD_ID_FIELD) {
         $evalLogic            = $evalLogicArr[$n];
         $destinationFileField = $destinationFileFieldArr[$n];
         $header               = $headerArr[$n];
@@ -131,14 +131,14 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 
 //        $instances[] = $this->instanceArr[$n];
 //TODO: Restore instance and form-names once initialize() works
-/*        foreach ($instanceArr[$n] as $instance) {
+        foreach ($instanceArr[$n] as $instance) {
             $this->inputForms[] = $instance['form-name'];
 
             \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
             "Instance: "  . $instance['form-name'],"", $record, $event_id);
     
         }
-*/        // $this->emDebug($instances, $this->inputForms);
+        // $this->emDebug($instances, $this->inputForms);
     }
 
 
@@ -233,7 +233,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             "n: " . $n . "\nevalLogic: " . $evalLogicArr[$n] . "\ndestinationFileField: " . $destinationFileFieldArr[$n] . "\nheader: " . $headerArr[$n] . "\nfooter: " . $footerArr[$n] . "\nsaveToFileRepo: " . $saveToFileRepoArr[$n] . "\nsaveToExternalStorage: " . $saveToExternalStorageArr[$n] . "\nsaveToAsSurvey: " . $saveToAsSurveyArr[$n] . "\nKEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKSArr[$n] . "\nKEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELDArr[$n],"", $record, $event_id);
             unset($n);
 
-            $this->initialize(1,$evalLogicArr,$destinationFileFieldArr,$headerArr,$footerArr,$saveToFileRepoArr,$saveToExternalStorageArr,$saveToAsSurveyArr,$KEEP_PAGE_BREAKSArr,$KEEP_RECORD_ID_FIELDArr,$evalLogic,$destinationFileField,$header,$footer,$saveToFileRepo,$saveToExternalStorage,$saveToAsSurvey,$KEEP_PAGE_BREAKS,$KEEP_RECORD_ID_FIELD);
+            $this->initialize(1,$evalLogicArr,$destinationFileFieldArr,$headerArr,$footerArr,$saveToFileRepoArr,$saveToExternalStorageArr,$saveToAsSurveyArr,$KEEP_PAGE_BREAKSArr,$KEEP_RECORD_ID_FIELDArr,$instanceArr,$evalLogic,$destinationFileField,$header,$footer,$saveToFileRepo,$saveToExternalStorage,$saveToAsSurvey,$KEEP_PAGE_BREAKS,$KEEP_RECORD_ID_FIELD);
 
             \REDCap::logEvent($this->getModuleName() . " caller of Intialize()",
             "n: " . $n . "\nevalLogic: " . $evalLogic . "\ndestinationFileField: " . $destinationFileField . "\nheader: " . $header . "\nfooter: " . $footer . "\nsaveToFileRepo: " . $saveToFileRepo . "\nsaveToExternalStorage: " . $saveToExternalStorage . "\nsaveToAsSurvey: " . $saveToAsSurvey . "\nKEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKS . "\nKEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELD,"", $record, $event_id);
