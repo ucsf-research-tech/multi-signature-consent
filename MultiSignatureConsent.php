@@ -113,7 +113,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
     }
 
 
-    public function initialize($n,&$evalLogicArr,&$destinationFileFieldArr,&$headerArr,&$footerArr,&$saveToFileRepoArr,&$saveToExternalStorageArr,&$saveToAsSurveyArr,&$KEEP_PAGE_BREAKSArr,&$KEEP_RECORD_ID_FIELDArr
+    public function initialize($n,&$evalLogicArr,&$destinationFileFieldArr,&$headerArr,&$footerArr,&$saveToFileRepoArr,&$saveToExternalStorageArr,&$saveToAsSurveyArr,&$KEEP_PAGE_BREAKSArr,&$KEEP_RECORD_ID_FIELDArr) {
         $evalLogic            = $evalLogicArr[$n];
         $this->destinationFileField = $this->destinationFileFieldArr[$n];
         $this->header               = $this->headerArr[$n];
