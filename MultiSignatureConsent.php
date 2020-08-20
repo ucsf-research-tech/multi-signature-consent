@@ -43,7 +43,8 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         
 
 
-    public function initializeArr(&$evalLogicArr) {
+    public function initializeArr(&$evalLogicArr,&$destinationFileFieldArr,&$headerArr,&$footerArr,&$saveToFileRepoArr,&$saveToExternalStorageArr,&$saveToAsSurveyArr,&$KEEP_PAGE_BREAKSArr,&$KEEP_RECORD_ID_FIELDArr
+    ) {
 
             
   /*          
@@ -222,7 +223,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
                             "Check config with initializeArr()", "", $record, $event_id);
             //TODO: Check config with initializeArr() array-capturing version of initialize()
             
-            initializeArr($evalLogicArr);
+            $this->initializeArr($evalLogicArr,$destinationFileFieldArr,$headerArr,$footerArr,$saveToFileRepoArr,$saveToExternalStorageArr,$saveToAsSurveyArr,$KEEP_PAGE_BREAKSArr,$KEEP_RECORD_ID_FIELDArr);
             $n=0;
             \REDCap::logEvent($this->getModuleName() . " caller of IntializeArr()",
             "n: " . $n . "\nevalLogic: " . $evalLogicArr[$n] . "\ndestinationFileField: " . $destinationFileFieldArr[$n] . "\nheader: " . $headerArr[$n] . "\nfooter: " . $footerArr[$n] . "\nsaveToFileRepo: " . $saveToFileRepoArr[$n] . "\nsaveToExternalStorage: " . $saveToExternalStorageArr[$n] . "\nsaveToAsSurvey: " . $saveToAsSurveyArr[$n] . "\nKEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKSArr[$n] . "\nKEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELDArr[$n],"", $record, $event_id);
