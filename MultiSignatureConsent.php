@@ -77,7 +77,6 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         $destinationFileFieldArr[$n]           = $logic['destination-file-field'];
         $headerArr[$n]           = $logic['header'];
         $footerArr[$n]           = $logic['footer'];
-        $headerArr[$n]           = $logic['eval-logic'];
         $saveToFileRepoArr[$n]           = $logic['save-to-file-repo'];
         $saveToExternalStorageArr[$n]           = $logic['save-to-external-storage'];
         $saveToAsSurveyArr[$n]           = $logic['save-to-as-survey'];
