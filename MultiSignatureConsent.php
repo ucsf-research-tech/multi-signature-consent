@@ -97,7 +97,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         }
 
         \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
-        "logics keys: " . array_keys($logics),"", $record, $event_id);
+        "logics keys: " . array_keys($logic),"", $record, $event_id);
 
         \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
         "instanceArr keys: " . array_keys($instanceArr),"", $record, $event_id);
