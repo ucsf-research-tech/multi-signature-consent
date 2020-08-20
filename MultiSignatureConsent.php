@@ -40,27 +40,6 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
     //TODO: Convert to capture as arrays rather than dims using array names from above
 
     //TODO: remove this support function (https://gist.github.com/jimmygle/2564610)
-    public function recursive_implode(array $array, $glue = ',', $include_keys = false, $trim_all = true)
-    {
-        $glued_string = '';
-    
-        // Recursively iterates array and adds key/value to glued string
-        array_walk_recursive($array, function($value, $key) use ($glue, $include_keys, &$glued_string)
-        {
-            $include_keys and $glued_string .= $key.$glue;
-            $glued_string .= $value.$glue;
-        });
-    
-        // Removes last $glue from string
-        strlen($glue) > 0 and $glued_string = substr($glued_string, 0, -strlen($glue));
-    
-        // Trim ALL whitespace
-        $trim_all and $glued_string = preg_replace("/(\s)/ixsm", '', $glued_string);
-    
-        return (string) $glued_string;
-    }        
-
-
     public function initializeArr(&$evalLogicArr,&$destinationFileFieldArr,&$headerArr,&$footerArr,&$saveToFileRepoArr,&$saveToExternalStorageArr,&$saveToAsSurveyArr,&$KEEP_PAGE_BREAKSArr,&$KEEP_RECORD_ID_FIELDArr,&$instanceArr
     ) {
 
@@ -98,7 +77,7 @@ $logics = $this->framework->getSubSettings('compilation-passes');
     "logics keys: " . array_keys($logics),"", $record, $event_id);
 
     \REDCap::logEvent($this->getModuleName() . " logics implosion structure",
-    "logics: " . recursive_implode($logics),"", $record, $event_id);
+    "logics: " . implode($logics[1]),"", $record, $event_id);
 
 
     foreach ($logics as $n=>$logic) {
