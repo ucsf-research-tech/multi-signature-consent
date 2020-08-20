@@ -114,7 +114,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 
 
 	public function initialize($n) {
-        $this->evalLogic            = $this->evalLogicArr[$n];
+        $evalLogic            = $evalLogicArr[$n];
         $this->destinationFileField = $this->destinationFileFieldArr[$n];
         $this->header               = $this->headerArr[$n];
         $this->footer               = $this->footerArr[$n];
