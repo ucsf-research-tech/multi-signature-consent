@@ -78,9 +78,10 @@ foreach ($logic['instance'] as $m=>$instance) //TODO: Make this an associative a
 {
     $instanceArr[$n][$m]=$logic['instance'][$m]; //TODO: Replace with [$n][] and let array take care of itself
     \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
-    "instanceArr[$n][$m]" . implode(",",$logic['instance'][$m]),"", $record, $event_id);
+    "instanceArr[$n][$m]: " . implode(",",$logic['instance'][$m]),"", $record, $event_id);
 }
 
+/*
 $logic_instance_0=$logic['instance'][0];
 
         \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
@@ -88,7 +89,7 @@ $logic_instance_0=$logic['instance'][0];
 
         }
     }
-
+*/
 
     public function initialize($n,&$evalLogicArr,&$destinationFileFieldArr,&$headerArr,&$footerArr,&$saveToFileRepoArr,&$saveToExternalStorageArr,&$saveToAsSurveyArr,&$KEEP_PAGE_BREAKSArr,&$KEEP_RECORD_ID_FIELDArr,&$instanceArr,&$evalLogic,&$destinationFileField,&$header,&$footer,&$saveToFileRepo,&$saveToExternalStorage,&$saveToAsSurvey,&$KEEP_PAGE_BREAKS,&$KEEP_RECORD_ID_FIELD) {
         $evalLogic            = $evalLogicArr[$n];
@@ -110,10 +111,11 @@ $logic_instance_0=$logic['instance'][0];
 //TODO: Restore instance and form-names once initialize() works
         foreach ($instanceArr[$n] as $instances) {
             foreach($instances as $instance)
-            $this->inputForms[] = $instance;//['form-name'];
-
-            \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
+            \REDCap::logEvent($this->getModuleName() . " instance stored",
             "Instance: "  . $instance,"", $record, $event_id);
+    
+    //        $this->inputForms[] = $instance;//['form-name'];
+
     
         }
         // $this->emDebug($instances, $this->inputForms);
