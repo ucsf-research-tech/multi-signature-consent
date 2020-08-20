@@ -81,7 +81,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         $saveToFileRepoArr[$n]           = $logic['save-to-file-repo'];
         $saveToExternalStorageArr[$n]           = $logic['save-to-external-storage'];
         $saveToAsSurveyArr[$n]           = $logic['save-to-as-survey'];
-        $$KEEP_PAGE_BREAKSArr[$n]           = $logic['keep-page-breaks'];
+        $KEEP_PAGE_BREAKSArr[$n]           = $logic['keep-page-breaks'];
         $KEEP_RECORD_ID_FIELDArr[$n]           = $logic['keep-record-id-field'];
 
         \REDCap::logEvent($this->getModuleName() . " IntializeArr()",
@@ -121,8 +121,8 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         $saveToFileRepo       = $saveToFileRepoArr[$n];
         $saveToExternalStorage= $saveToExternalStorageArr[$n];
         $saveToAsSurvey       = $saveToAsSurveyArr[$n];
-        $KEEP_PAGE_BREAKS    = $$KEEP_PAGE_BREAKSArr[$n];
-        $KEEP_RECORD_ID_FIELD= $$KEEP_RECORD_ID_FIELDArr[$n];
+        $KEEP_PAGE_BREAKS    = $KEEP_PAGE_BREAKSArr[$n];
+        $KEEP_RECORD_ID_FIELD= $KEEP_RECORD_ID_FIELDArr[$n];
 
         \REDCap::logEvent($this->getModuleName() . " Intialize()",
         "n: " . $n . "\nevalLogic: " . $evalLogic . "\ndestinationFileField: " . $destinationFileField . "\nheader: " . $header . "\nfooter: " . $footer . "\nsaveToFileRepo: " . $saveToFileRepo . "\nsaveToExternalStorage: " . $saveToExternalStorage . "\nsaveToAsSurvey: " . $saveToAsSurvey . "\nKEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKS . "\nKEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELD,"", $record, $event_id);
