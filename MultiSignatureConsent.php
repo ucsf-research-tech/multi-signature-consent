@@ -85,7 +85,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         $KEEP_RECORD_ID_FIELDArr[$n]           = $logic['keep-record-id-field'];
 
         \REDCap::logEvent($this->getModuleName() . " Intialize()",
-        "$evalLogic: " . $evalLogicArr[$n] . "\n$destinationFileField: " . $destinationFileFieldArr[$n] . "\n$header: " . $headerArr[$n] . "\n$footer: " . $footerArr[$n] . "\n$saveToFileRepo: " . $saveToFileRepoArr[$n] . "\n$saveToExternalStorage: " . $saveToExternalStorageArr[$n] . "\n$saveToAsSurvey: " . $saveToAsSurveyArr[$n] . "\n$KEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKSArr[$n] . "\n$KEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELDArr[$n],"", $record, $event_id);
+        "evalLogic: " . $evalLogicArr[$n] . "\ndestinationFileField: " . $destinationFileFieldArr[$n] . "\nheader: " . $headerArr[$n] . "\nfooter: " . $footerArr[$n] . "\nsaveToFileRepo: " . $saveToFileRepoArr[$n] . "\nsaveToExternalStorage: " . $saveToExternalStorageArr[$n] . "\nsaveToAsSurvey: " . $saveToAsSurveyArr[$n] . "\nKEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKSArr[$n] . "\nKEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELDArr[$n],"", $record, $event_id);
 
         
         
