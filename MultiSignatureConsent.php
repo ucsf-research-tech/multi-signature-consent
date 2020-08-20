@@ -86,8 +86,6 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         \REDCap::logEvent($this->getModuleName() . " Intialize()",
         "evalLogic: " . $evalLogicArr[$n] . "\ndestinationFileField: " . $destinationFileFieldArr[$n] . "\nheader: " . $headerArr[$n] . "\nfooter: " . $footerArr[$n] . "\nsaveToFileRepo: " . $saveToFileRepoArr[$n] . "\nsaveToExternalStorage: " . $saveToExternalStorageArr[$n] . "\nsaveToAsSurvey: " . $saveToAsSurveyArr[$n] . "\nKEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKSArr[$n] . "\nKEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELDArr[$n],"", $record, $event_id);
 
-        
-        
         $instancesArr[$n]           = $logic['instance'];
         \REDCap::logEvent($this->getModuleName() . " instanceArr external structure",
         getType($logic['instance']) . ": " . $logic['instance'] . "\nContents: " . $instanceArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($instanceArr),"", $record, $event_id);
@@ -100,23 +98,6 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 
     }
     
-
-
-        //TODO replace debug code above with actual gathering of arrays:
-        /*
-        $this->evalLogicArr[]            = $this->getProjectSetting('eval-logic');
-        $this->destinationFileFieldArr[] = $this->getProjectSetting('destination-file-field');
-        $this->headerArr[]               = $this->getProjectSetting('header');
-        $this->footerArr[]               = $this->getProjectSetting('footer');
-        $this->saveToFileRepoArr[]       = $this->getProjectSetting('save-to-file-repo');
-        $this->saveToExternalStorageArr[]= $this->getProjectSetting('save-to-external-storage');
-        $this->saveToAsSurveyArr[]       = $this->getProjectSetting('save-to-as-survey');
-        $this->$KEEP_PAGE_BREAKSArr[]    = $this->getProjectSetting('keep-page-breaks'); //TODO were these reserved tokens? They were originally privates.
-        $this->$KEEP_RECORD_ID_FIELDArr[]= $this->getProjectSetting('keep-record-id-field'); //TODO were these reserved tokens? They were originally privates.
-
-        $this->$instances[]              = $this->getProjectSetting('instance'); //TODO: Does this detonate on multidimensional arrays?
-        // $this->emDebug($instances, $this->inputForms);
-        */
     }
 
 
@@ -136,8 +117,8 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 
 
 
-        $instances = $this->instanceArr[$n];
-        foreach ($instances as $instance) {
+//        $instances[] = $this->instanceArr[$n];
+        foreach ($instanceArr[$n] as $instance) {
             $this->inputForms[] = $instance['form-name'];
 
             \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
