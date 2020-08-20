@@ -84,7 +84,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         $$KEEP_PAGE_BREAKSArr[$n]           = $logic['keep-page-breaks'];
         $KEEP_RECORD_ID_FIELDArr[$n]           = $logic['keep-record-id-field'];
 
-        $instances[$n]           = $logic['instance'];
+        $instancesArr[$n]           = $logic['instance'];
         \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
         getType($logic['instance']) . ": " . $logic['instance'] . "\nContents: " . $instanceArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($instanceArr),"", $record, $event_id);
 
@@ -107,6 +107,35 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
         $this->$instances[]              = $this->getProjectSetting('instance'); //TODO: Does this detonate on multidimensional arrays?
         // $this->emDebug($instances, $this->inputForms);
         */
+    }
+
+
+	public function initialize($n) {
+        $this->evalLogic            = $this->evalLogicArr[$n]Arr[$n]
+        $this->destinationFileField = $this->destinationFileFieldArr[$n]Arr[$n]
+        $this->header               = $this->headerArr[$n]Arr[$n]
+        $this->footer               = $this->footerArr[$n]Arr[$n]
+        $this->saveToFileRepo       = $this->saveToFileRepoArr[$n]Arr[$n]
+        $this->saveToExternalStorage= $this->saveToExternalStorageArr[$n]
+        $this->saveToAsSurvey       = $this->saveToAsSurveyArr[$n]Arr[$n]
+        $this::$KEEP_PAGE_BREAKS    = $this->$KEEP_PAGE_BREAKSArr[$n]Arr[$n]
+        $this::$KEEP_RECORD_ID_FIELD= $this->$KEEP_RECORD_ID_FIELDArr[$n]
+
+        \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
+        "$evalLogic: " . $evalLogic . "\n$destinationFileField: " . $destinationFileField . "\n$header: " . $header . "\n$footer: " . $footer . "\n$saveToFileRepo: " . $saveToFileRepo . "\n$saveToExternalStorage: " . $saveToExternalStorage . "\n$saveToAsSurvey: " . $saveToAsSurvey . "\n$KEEP_PAGE_BREAKS: " . $KEEP_PAGE_BREAKS . "\n$KEEP_RECORD_ID_FIELD: " . $KEEP_RECORD_ID_FIELD,"", $record, $event_id);
+
+
+
+
+        $instances = $this->instanceArr[$n];
+        foreach ($instances as $instance) {
+            $this->inputForms[] = $instance['form-name'];
+
+            \REDCap::logEvent($this->getModuleName() . " instanceArr internal structure",
+            "Instance: "  . $instance['form-name'],"", $record, $event_id);
+    
+        }
+        // $this->emDebug($instances, $this->inputForms);
     }
 
 
@@ -192,6 +221,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             //TODO: Check config with initializeArr() array-capturing version of initialize()
             
             $this->initializeArr();
+            $this->initialize(0);
             return; //TODO continue past this point by removing return once we have initializeArr working
             
             
