@@ -42,28 +42,7 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
 
 
             
-        $logics = $this->framework->getSubSettings('compilation-passes');
-        \REDCap::logEvent($this->getModuleName() . " SubSettings structure",
-        getType($logics) . " with " . count($logics) . " elements","", $record, $event_id);
 
-        \REDCap::logEvent($this->getModuleName() . " SubSettings output",
-        implode(",",$logics), "", $record, $event_id);
-
-        \REDCap::logEvent($this->getModuleName() . " SubSettings internal structure",
-        getType($logics[0]) . " with " . count($logics) . " elements","", $record, $event_id);
-
-        \REDCap::logEvent($this->getModuleName() . " SubSettings internal output",
-        implode(",",$logics[0]), "", $record, $event_id);
-        \REDCap::logEvent($this->getModuleName() . " evalLogicArr internal structure",
-        getType($evalLogicArr) . " with " . count($evalLogicArr) . " elements","", $record, $event_id);
-
-
-
-        foreach ($logics as $n=>$logic) {
-            $evalLogicArr[$n] = $logic['eval-logic'];
-            \REDCap::logEvent($this->getModuleName() . " evalLogicArr internal structure",
-            getType($logic['eval-logic']) . ": " . $logic['eval-logic'] . "\nContents: " . $evalLogicArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($evalLogicArr),"", $record, $event_id);
-        }
 
         //TODO replace debug code above with actual gathering of arrays:
         /*
@@ -165,9 +144,30 @@ class MultiSignatureConsent extends \ExternalModules\AbstractExternalModule {
             //TODO: Check config with initializeArr() array-capturing version of initialize()
             
             
-
+            $logics = $this->framework->getSubSettings('compilation-passes');
+            \REDCap::logEvent($this->getModuleName() . " SubSettings structure",
+            getType($logics) . " with " . count($logics) . " elements","", $record, $event_id);
+    
+            \REDCap::logEvent($this->getModuleName() . " SubSettings output",
+            implode(",",$logics), "", $record, $event_id);
+    
+            \REDCap::logEvent($this->getModuleName() . " SubSettings internal structure",
+            getType($logics[0]) . " with " . count($logics) . " elements","", $record, $event_id);
+    
+            \REDCap::logEvent($this->getModuleName() . " SubSettings internal output",
+            implode(",",$logics[0]), "", $record, $event_id);
+            \REDCap::logEvent($this->getModuleName() . " evalLogicArr internal structure",
+            getType($evalLogicArr) . " with " . count($evalLogicArr) . " elements","", $record, $event_id);
+    
+    
+    
+            foreach ($logics as $n=>$logic) {
+                $evalLogicArr[$n] = $logic['eval-logic'];
+                \REDCap::logEvent($this->getModuleName() . " evalLogicArr internal structure",
+                getType($logic['eval-logic']) . ": " . $logic['eval-logic'] . "\nContents: " . $evalLogicArr[$n]  . "\nIncrementer: " . $n . "\nArray size: " . count($evalLogicArr),"", $record, $event_id);
+            }
             
-            $this->initializeArr();
+            //$this->initializeArr();
             return; //TODO continue past this point by removing return once we have initializeArr working
             
             
